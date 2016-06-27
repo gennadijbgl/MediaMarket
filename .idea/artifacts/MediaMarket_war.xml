@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MediaMarket:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="by.hienadz.budkouski.war">
+      <element id="artifact" artifact-name="MediaMarket:war exploded" />
+    </root>
+  </artifact>
+</component>
