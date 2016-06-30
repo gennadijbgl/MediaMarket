@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 @Entity(name="users")
 @Table(name="users")
+
 public class User
 {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,6 +22,7 @@ public class User
     private int enabled;
     @Column(name = "email", nullable = false, length = 50)
     private String email;
+
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<Role> roles;
 
