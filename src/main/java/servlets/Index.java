@@ -9,8 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/index")
 
@@ -18,19 +18,16 @@ public class Index extends HttpServlet {
     @EJB
     UserDao userDao;
 
-    @Transactional
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
-        User t = (User) userDao.findById(1).get(0);
 
+        List<User> persons = userDao.findAll();
 
+        // Attach persons to the Model
 
-
-        User s = new User("sf","sf",0,"asgf");
-
-        userDao.save(s);
-
+        request.setAttribute("persons", persons);
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

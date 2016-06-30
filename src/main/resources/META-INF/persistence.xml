@@ -5,32 +5,28 @@
                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="Store1" transaction-type="JTA">
+    <persistence-unit name="Store" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>jdbc/media</jta-data-source>
+        <jta-data-source>java:/jboss/datasources/media</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
-            <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.SunONETransactionManagerLookup" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 
-        <persistence-unit name="Store" transaction-type="JTA">
+        <persistence-unit name="Store1" transaction-type="JTA">
 
             <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-            <jta-data-source>jdbc/media</jta-data-source>
-            <properties>
-                <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />
-                <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-                <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mediamarket"/>
-                <property name="hibernate.connection.username" value="root"/>
-                <property name="hibernate.connection.password" value="root"/>
-                <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <!--<jta-data-source>jdbc/media</jta-data-source>-->
 
+            <properties>
+                <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
                 <property name="hibernate.hbm2ddl.auto" value="update"/>
 
             </properties>
         </persistence-unit>
+
+
 </persistence>
