@@ -5,6 +5,8 @@ import service.UserDao;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpMethodConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/index")
+@WebServlet(name="Index",urlPatterns = "/index")
 
+@ServletSecurity(httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Admin"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Admin")
+})
 public class Index extends HttpServlet {
     @EJB
     UserDao userDao;
@@ -27,9 +33,9 @@ public class Index extends HttpServlet {
 
         // Attach persons to the Model
 
-        request.setAttribute("persons", persons);
+        request.setAttribute("persons", persons.toArray());
 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("pages/index.jsp").forward(request, response);
     }
 
 }
