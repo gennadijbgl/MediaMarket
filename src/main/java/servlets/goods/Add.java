@@ -1,6 +1,5 @@
 package servlets.goods;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Category;
 import entities.Goods;
 import service.CategoryDao;
@@ -15,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
+
+import static servlets.Helper.handle;
+import static servlets.Helper.print;
 
 @WebServlet(urlPatterns = "/goods/add")
 public class Add extends HttpServlet{
@@ -26,28 +27,7 @@ public class Add extends HttpServlet{
     @EJB
     private CategoryDao categoryDao;
 
-    protected String print(Object object)throws IOException, NullPointerException{
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(object);
-    }
-    protected String handle(Exception exception) throws IOException{
-        if (exception instanceof SQLException){
-            return "Произошла ошибка при работе с базой данных";
-        }
-        if (exception instanceof ParseException){
-            return "Ошибка преобразования формата даты";
-        }
-        if (exception instanceof NumberFormatException){
-            return "Ошибка формата данных";
-        }
-        if (exception instanceof NullPointerException){
-            return "Ошибка при передаче данных";
-        }
-        if (exception instanceof EJBException){
-            return "Невозможно выполнить запрос к базе";
-        }
-        return "Ошибка выполнения";
-    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
