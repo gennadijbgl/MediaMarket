@@ -47,7 +47,7 @@ public class CategoryDao
     }
 
     public ArrayList<Category> findAll() {
-        Query query = em.createNativeQuery("{call findAllCategories()}", Category.class);
+        Query query = em.createQuery("select u from category u");
         return new ArrayList<Category>(query.getResultList());
     }
 

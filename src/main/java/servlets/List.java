@@ -2,6 +2,7 @@ package servlets;
 
 import entities.User;
 import service.UserDao;
+import servlets.user.Login;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;

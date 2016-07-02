@@ -75,38 +75,41 @@
 </nav>
 
 <div class="container">
+    <div class=" col-lg-5 col-lg-offset-3 centered">
+
+    <form method="post" action="add">
+        <h1>Добавление товара</h1>
+
+        <div class="form-group">
+            <label for="categoryId">Количество</label>
+            <select  id ="categoryId" class="form-control" name = "categoryId" required></select>
+        </div>
+
+        <div class="form-group">
+            <label for="title">Количество</label>
+            <input type="text" class="form-control" id="title" name = "title" placeholder="Название товара (1 - 50 символов, включая пробелы и тире)" required pattern="^[A-Za-zА-Яа-яЁё0-9- ]{1,50}$">
+
+        </div>
+
+        <div class="form-group">
+            <label for="price">Количество</label>
+            <input type="text" class="form-control" name = "price" id="price" placeholder="Цена товара" required>
+        </div>
+        <div class="form-group">
+            <label for="count">Количество</label>
+            <input type="text" class="form-control"name = "count" id="count" placeholder="Количество">
+        </div>
+
+        <textarea class="form-control" rows="3" id = "description" name = "description" placeholder="Описание" maxlength="256"></textarea>
+        <button type="submit" class="btn btn-default">Добавить товар</button>
+    </form>
 
 
-<div class="jumbotron">
-    <h1>Hello, world!</h1>
-    <p>...</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-</div>
 
-<div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Users</div>
 
-    <!-- Table -->
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${persons}" var="item">
-            <tr>
-                <td><c:out value="${item.getId()}" /></td>
-                <td><c:out value="${item.getUsername()}" /></td>
-                <td><c:out value="${item.getEmail()}" /></td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
+    </div>
+
+
 
 
 </div>

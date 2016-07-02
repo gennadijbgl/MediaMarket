@@ -7,7 +7,7 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
-    <login-config>
+        <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/pages/login.jsp</form-login-page>
