@@ -64,7 +64,7 @@ public class GoodsDao
     }
 
     public ArrayList<Goods> findAll() {
-        Query query = em.createNativeQuery("{call findAllGoods()}", Goods.class);
+        Query query = em.createQuery("select y from goods y");
         return new ArrayList<Goods>(query.getResultList());
     }
 

@@ -1,4 +1,4 @@
-package servlets;
+package servlets.user;
 
 import entities.User;
 import service.UserDao;
@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by Hienadz on 30.06.16.
  */
-@WebServlet(name = "List",urlPatterns = "/list")
+@WebServlet(name = "List",urlPatterns = "/users/list")
 public class List extends HttpServlet {
     @EJB
     UserDao userDao;
@@ -32,7 +32,8 @@ public class List extends HttpServlet {
 
         request.setAttribute("persons", persons.toArray());
 
-        request.getRequestDispatcher("pages/index.jsp").forward(request, response);
+        request.setAttribute("page", "/pages/index.jsp");
+        request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
 
 
 

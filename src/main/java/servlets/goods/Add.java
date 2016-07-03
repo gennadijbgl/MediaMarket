@@ -37,7 +37,8 @@ public class Add extends HttpServlet{
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
-        request.getRequestDispatcher("/pages/goods/add.jsp").forward(request, response);
+        request.setAttribute("page", "/pages/goods/add.jsp");
+        request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{

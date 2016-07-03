@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="Index",urlPatterns = "/index")
-
-
+@WebServlet(name="Index",urlPatterns = {"/index"})
 public class Index extends HttpServlet {
     @EJB
     UserDao userDao;
@@ -32,7 +30,8 @@ public class Index extends HttpServlet {
 
         request.setAttribute("persons", persons.toArray());
 
-        request.getRequestDispatcher("pages/index.jsp").forward(request, response);
+        request.setAttribute("page", "/pages/index.jsp");
+        request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
 }
