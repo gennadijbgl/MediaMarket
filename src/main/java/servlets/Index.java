@@ -16,10 +16,7 @@ import java.util.List;
 
 @WebServlet(name="Index",urlPatterns = "/index")
 
-@ServletSecurity(httpMethodConstraints = {
-        @HttpMethodConstraint(value = "GET", rolesAllowed = "Admin"),
-        @HttpMethodConstraint(value = "POST", rolesAllowed = "Admin")
-})
+
 public class Index extends HttpServlet {
     @EJB
     UserDao userDao;

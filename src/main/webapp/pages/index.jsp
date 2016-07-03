@@ -14,6 +14,20 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/lib/ui-bootstrap.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap.js"></script>
 
+
+    <!-- Angular 2 -->
+
+
+    <script src="${pageContext.request.contextPath}/node_modules/core-js/client/shim.min.js"></script>
+    <script src="${pageContext.request.contextPath}/node_modules/zone.js/dist/zone.js"></script>
+    <script src="${pageContext.request.contextPath}/node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="${pageContext.request.contextPath}/node_modules/systemjs/dist/system.src.js"></script>
+    <script src="${pageContext.request.contextPath}/systemjs.config.js"></script>
+    <script>
+        System.import('app').catch(function(err){ console.error(err); });
+    </script>
+    <!-- Angular 2 -->
+
     <title>Медыя-маркет</title>
 </head>
 
@@ -110,6 +124,9 @@
 
 
 </div>
+
+<my-app>Loading...</my-app>
+
 
 </body>
 </html>
