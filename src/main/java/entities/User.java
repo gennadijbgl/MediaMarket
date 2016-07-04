@@ -18,15 +18,14 @@ public class User
     private String username;
     @Column(name = "password", nullable = false, length = 40)
     private String password;
-    @Column(name = "enabled", nullable = false)
-    private int enabled;
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    private List<Role> roles;
+    @ManyToOne
+    @JoinColumn(name = "roleId")
+    private Role role;
 
-    public static User createUser(HttpServletRequest request){
+    public static User getUser(HttpServletRequest request){
         String username = request.getParameter("username");
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
@@ -35,7 +34,7 @@ public class User
             return null;
         }
         if (matches(username, password1)){
-            return new User(username, password1, 1, email);
+            return new User(username, password1, email);
         }
         return null;
     }
@@ -58,11 +57,11 @@ public class User
 
     public User(){}
 
-    public User(String username, String password, int enabled, String email)
+    public User(String username, String password, String email)
     {
         this.username = username;
         this.password = password;
-        this.setEnabled(enabled);
+
         this.email = email;
     }
 
@@ -90,7 +89,6 @@ public class User
         this.password = password;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -99,19 +97,12 @@ public class User
         this.email = email;
     }
 
-    public int getEnabled() {
-        return enabled;
+
+    public Role getRole() {
+        return role;
     }
 
-    public void setEnabled(int enabled) {
-        this.enabled = enabled;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

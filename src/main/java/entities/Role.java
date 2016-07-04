@@ -2,32 +2,35 @@ package entities;
 
 
  import javax.persistence.*;
+ import javax.servlet.http.HttpServletRequest;
+ import java.util.HashSet;
+ import java.util.Set;
 
 @Entity(name="roles")
 @Table(name="roles")
-@NamedQuery(name = "Role.getAll", query = "SELECT c from roles c")
 public class Role
 {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id", nullable = false)
     private int id;
-    @Column(name="userID", nullable = false)
-    private int userId;
-    @Column(name="role", nullable = false, length = 20)
-    private String role;
+    @Column(name="title", nullable = false, length = 20, unique = true)
+    private String title;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="userID", insertable = false, updatable = false)
-    User user;
+    @OneToMany(mappedBy = "role")
+    private Set<User> users = new HashSet<User>();
 
     public Role(){}
 
-    public Role(int userId, String role)
+    public Role(String title)
     {
-        this.userId = userId;
-        this.role = role;
+        this.title = title;
     }
 
+    public static Role getRole(HttpServletRequest request){
+        String role = request.getParameter("role");
+        return new Role(role);
+
+    }
     public int getId() {
         return id;
     }
@@ -36,19 +39,20 @@ public class Role
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getRole() {
-        return role;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
+
 }

@@ -24,23 +24,12 @@ public class List extends HttpServlet {
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-        java.util.List<User> persons = userDao.findAll();
-
-        // Attach persons to the Model
-
-        request.setAttribute("persons", persons.toArray());
-
+        request.setAttribute("itemsArray",  userDao.findAll().toArray());
         request.setAttribute("page", "/pages/index.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
 
-
-
-
     }
 
-
-    }
+}
 
 

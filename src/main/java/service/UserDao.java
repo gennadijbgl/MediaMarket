@@ -17,7 +17,7 @@ public class UserDao
     @PersistenceContext(unitName = "Store")
     private EntityManager em;
 
-    public void save(User user)
+    public void saveUser(User user)
     {
         em.persist(user);
     }
@@ -55,7 +55,6 @@ public class UserDao
                 .setParameter("id", id)
                 .getResultList();
         User r = (User) t.get(0);
-        Hibernate.initialize(r.getRoles());
         return r;
     }
 

@@ -1,6 +1,5 @@
 package servlets.user;
 
-import entities.Role;
 import entities.User;
 
 import org.jboss.security.SimpleGroup;
@@ -12,7 +11,6 @@ import javax.security.auth.Subject;
 import javax.security.auth.callback.*;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
-import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Map;
@@ -98,8 +96,8 @@ public class Login implements LoginModule {
     public boolean commit()throws LoginException{
         try{
             if (loginOk & !authenticated){
-                for (Role role: user.getRoles()) {
-                    principal = new SimplePrincipal(role.getRole());
+                {
+                    principal = new SimplePrincipal(user.getRole().getTitle());
                     group.addMember(principal);
                 }
                 subject.getPrincipals().add(new SimplePrincipal(username));

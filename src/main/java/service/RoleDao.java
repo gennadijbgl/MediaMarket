@@ -25,5 +25,10 @@ public class RoleDao
                 .setParameter("id", id)
                 .getResultList();
     }
+    public List findAll() {
+        return em.createQuery(
+                "SELECT c FROM roles c")
 
+                .getResultList();
+    }
 }
