@@ -1,18 +1,13 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <div class=" col-lg-5 col-lg-offset-3 centered">
 
     <form method="post" action="add">
-        <h1>Дадаванне тавару</h1>
+        <h1>Змяненне тавару</h1>
 
         <div class="form-group">
             <label for="categoryId">Катэгорыя</label>
-            <select  id ="categoryId" class="form-control" name = "categoryId" placeholder="Абярыце катэгорыю" required>
-                <c:forEach items="${categories}" var="cat">
-                    <option value="${cat.getId()}">${cat.getTitle()}</option>
-                </c:forEach>
-            </select>
+            <select  id ="categoryId" class="form-control" name = "categoryId" required></select>
         </div>
 
         <div class="form-group">
@@ -34,7 +29,7 @@
             <label for="description">Апісанне</label>
             <textarea class="form-control" rows="3" id = "description" name = "description" placeholder="Апісанне" maxlength="256"></textarea>
         </div>
-         <button type="submit" role="group"  class="btn-group btn btn-default">Дадаць тавар</button>
+        <button type="submit" role="group"  class="btn-group btn btn-default">Дадаць тавар</button>
     </form>
 
 

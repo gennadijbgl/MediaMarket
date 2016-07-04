@@ -1,9 +1,8 @@
-package servlets.goods;
+package servlets.category;
+
 
 import entities.Category;
-import entities.Goods;
 import service.CategoryDao;
-import service.GoodsDao;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -19,30 +18,26 @@ import java.util.ArrayList;
 import static servlets.Helper.handle;
 import static servlets.Helper.print;
 
-@WebServlet(urlPatterns = "/goods/add")
-public class Add extends HttpServlet{
+@WebServlet(value = "/categories/add")
+public class Add extends HttpServlet {
 
     @EJB
-    private GoodsDao goodsDao;
-    @EJB
-    private CategoryDao categoryDao;
-
+    CategoryDao categoryDao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
             ArrayList<Category> categories = categoryDao.findAll();
-            request.setAttribute("categories1", print(categories));
+            request.setAttribute("categories", print(categories));
         }
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
-        request.setAttribute("categories", categoryDao.findAll());
-        request.setAttribute("page", "/pages/goods/add.jsp");
+        request.setAttribute("page", "/pages/categories/add.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
             add(request);
         }
@@ -53,8 +48,8 @@ public class Add extends HttpServlet{
     }
 
     protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
-        Goods goods = Goods.getGoods(request);
-        String message = goodsDao.saveGoods(goods) == 1 ? "Товар успешно добавлен" : "Ошибка добавления в базу данных";
+        Category category = Category.getCategory(request);
+        String message = categoryDao.saveCategory(category) == 1 ? "Категория успешно добавлена" : "Ошибка добавления в базу данных";
         request.getSession().setAttribute("message", message);
     }
 }

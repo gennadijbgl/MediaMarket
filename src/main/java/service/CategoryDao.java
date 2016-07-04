@@ -16,12 +16,8 @@ public class CategoryDao
     private EntityManager em;
 
     public int saveCategory(Category category)throws SQLException {
-        Query query = em.createNativeQuery("{call saveCategory(?,?)}",
-                Category.class)
-                .setParameter(1, category.getTitle())
-                .setParameter(2, category.getDescription())
-                ;
-        return query.executeUpdate();
+        em.persist(category);
+        return 1;
     }
 
     public int delete(int id)throws SQLException {

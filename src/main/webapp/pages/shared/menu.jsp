@@ -18,7 +18,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="goods/add">Тавары</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Катэгорыя<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="${pageContext.request.contextPath}/categories/list">Спіс</a></li>
+                        <li><a href="${pageContext.request.contextPath}/categories/add">Дадаць</a></li>
+
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Тавары<span class="caret"></span></a>
                     <ul class="dropdown-menu">

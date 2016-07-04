@@ -17,15 +17,8 @@ public class GoodsDao
 
     public int saveGoods(Goods goods)throws SQLException {
 
-            Query query = em.createNativeQuery("{call saveGoods(?,?,?,?,?)}",
-                Goods.class)
-                .setParameter(1, goods.getCategoryId())
-                .setParameter(2, goods.getTitle())
-                .setParameter(3, goods.getPrice())
-                .setParameter(4, goods.getCount())
-                .setParameter(5, goods.getDescription())
-                ;
-        return query.executeUpdate();
+        em.persist(goods);
+        return 1;
     }
 
     public int updateGoods(Goods goods)throws SQLException {
