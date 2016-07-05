@@ -9,9 +9,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>Ід</th>
+            <th>Назва</th>
+            <th>Апісанне</th>
         </tr>
         </thead>
         <tbody>

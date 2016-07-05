@@ -11,8 +11,8 @@
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet" type="text/css">
     <%--<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery.js"></script>--%>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/lib/ui-bootstrap.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap.js"></script>
+     <script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/menu_script.js"></script>
 
 
     <title>Медыя-маркет</title>

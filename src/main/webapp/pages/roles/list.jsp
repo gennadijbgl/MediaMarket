@@ -3,7 +3,7 @@
 
 <div class="panel panel-default">
 
-    <div class="panel-heading">Тавары</div>
+    <div class="panel-heading">Ролі</div>
 
 
     <table class="table">
@@ -11,10 +11,6 @@
         <tr>
             <th>Ід</th>
             <th>Назва</th>
-            <th>Апісанне</th>
-            <th>Катэгорыя</th>
-            <th>Кошт</th>
-            <th>Колькасць</th>
         </tr>
         </thead>
         <tbody>
@@ -22,11 +18,6 @@
             <tr>
                 <td><c:out value="${item.getId()}" /></td>
                 <td><c:out value="${item.getTitle()}" /></td>
-                <td><c:out value="${item.getDescription()}" /></td>
-                <td><c:out value="${item.getCategory().getTitle()}" /></td>
-                <td><c:out value="${item.getPrice()}" /></td>
-                <td><c:out value="${item.getCount()}" /></td>
-                getCategoryId
             </tr>
         </c:forEach>
         </tbody>

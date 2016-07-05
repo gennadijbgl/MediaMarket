@@ -17,9 +17,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ролі<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="${pageContext.request.contextPath}/roles/list">Спіс</a></li>
+                        <li><a href="${pageContext.request.contextPath}/roles/add">Дадаць</a></li>
+
+                    </ul>
+                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Катэгорыя<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Карыстачы<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="${pageContext.request.contextPath}/users/list">Спіс</a></li>
+                        <li><a href="${pageContext.request.contextPath}/users/add">Дадаць</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Катэгорыі<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="${pageContext.request.contextPath}/categories/list">Спіс</a></li>
                         <li><a href="${pageContext.request.contextPath}/categories/add">Дадаць</a></li>

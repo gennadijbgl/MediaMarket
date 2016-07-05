@@ -16,7 +16,7 @@ public class Role
     @Column(name="title", nullable = false, length = 20, unique = true)
     private String title;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<User>();
 
     public Role(){}
@@ -27,7 +27,7 @@ public class Role
     }
 
     public static Role getRole(HttpServletRequest request){
-        String role = request.getParameter("role");
+        String role = request.getParameter("title");
         return new Role(role);
 
     }

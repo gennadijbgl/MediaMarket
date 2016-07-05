@@ -9,12 +9,11 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>Ід</th>
+            <th>Логін</th>
+            <th>Пароль</th>
+            <th>Пошта</th>
+            <th>Роля</th>
         </tr>
         </thead>
         <tbody>

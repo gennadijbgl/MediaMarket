@@ -25,7 +25,7 @@ public class List extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("itemsArray",  userDao.findAll().toArray());
-        request.setAttribute("page", "/pages/index.jsp");
+        request.setAttribute("page", "/pages/users/list.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
 
     }
