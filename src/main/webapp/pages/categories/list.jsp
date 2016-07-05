@@ -12,6 +12,7 @@
             <th>Ід</th>
             <th>Назва</th>
             <th>Апісанне</th>
+            <th>Дзеянні</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                 <td><c:out value="${item.getId()}" /></td>
                 <td><c:out value="${item.getTitle()}" /></td>
                 <td><c:out value="${item.getDescription()}" /></td>
+                <td><a href="<c:out value="${request.getAttribute('page')}edit?id=${item.getId()}" />">Змяніць</a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}">
                 <img alt="Brand" src="${pageContext.request.contextPath}/img/hb.png">
             </a>
         </div>

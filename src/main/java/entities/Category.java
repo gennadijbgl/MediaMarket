@@ -25,7 +25,7 @@ public class Category
     }
 
     public static Category getCategory(HttpServletRequest request) throws NullPointerException, NumberFormatException{
-        String number = request.getParameter("number");
+        String number = request.getParameter("id");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         if (titleMatches(title) & descriptionMatches(description)){
@@ -38,19 +38,20 @@ public class Category
                 return category;
             }
         }
+
         throw new NumberFormatException();
     }
 
     public static boolean titleMatches(String title){
         Pattern patternTitle = Pattern.compile("^[A-Za-zА-Яа-яЁё0-9 -]{1,50}$");
         Matcher matcherTitle = patternTitle.matcher(title);
-        return matcherTitle.matches();
+        return true;//matcherTitle.matches();
     }
 
     public static boolean descriptionMatches(String description){
         Pattern patternDescription = Pattern.compile("^[A-Za-zА-Яа-яЁё0-9 -]{0,256}$");
         Matcher matcherDescription = patternDescription.matcher(description);
-        return matcherDescription.matches();
+        return true;// matcherDescription.matches();
     }
 
     public int getId() {

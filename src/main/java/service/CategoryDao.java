@@ -1,6 +1,7 @@
 package service;
 
 import entities.Category;
+import entities.Goods;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,8 +16,16 @@ public class CategoryDao
     @PersistenceContext(unitName = "Store")
     private EntityManager em;
 
-    public int saveCategory(Category category)throws SQLException {
-        em.persist(category);
+    public int saveCategory(Category category) {
+        try {
+
+
+            em.persist(category);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         return 1;
     }
 
@@ -28,13 +37,18 @@ public class CategoryDao
         return query.executeUpdate();
     }
 
-    public ArrayList<Category> findById(int number) {
-        Query query = em.createNativeQuery("{call findCategoryById(?)}", Category.class)
-                .setParameter(1, number)
-                ;
-        return new ArrayList<Category>(query.getResultList());
+    public Category findById(int id) {
+        return (Category) em.createQuery(
+                "SELECT c FROM category c WHERE c.id = :id")
+                .setParameter("id", id).getSingleResult();
     }
 
+
+    public void update(Category item)throws SQLException {
+
+        em.merge(item);
+
+    }
     public ArrayList<Category> findByTitle(String title) {
         Query query = em.createNativeQuery("{call findCategoryByTitle(?)}", Category.class)
                 .setParameter(1, title)
