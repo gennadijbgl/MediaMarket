@@ -29,12 +29,8 @@ public class CategoryDao
         return 1;
     }
 
-    public int delete(int id)throws SQLException {
-        Query query = em.createNativeQuery("{call deleteCategory(?)}",
-                Category.class)
-                .setParameter(1, id)
-                ;
-        return query.executeUpdate();
+    public void delete(int id)throws SQLException {
+      em.remove(findById(id));
     }
 
     public Category findById(int id) {

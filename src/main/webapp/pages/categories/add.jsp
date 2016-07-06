@@ -8,7 +8,6 @@
         <div class="form-group">
             <label for="title">Назва</label>
             <input type="text" class="form-control" id="title" name = "title" placeholder="Назва (макс 50 сімбаляў)" required pattern="^[A-Za-zА-Яа-яЁё0-9- ]{1,50}$">
-
         </div>
 
 

@@ -28,7 +28,7 @@ public class Category
         String number = request.getParameter("id");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-        if (titleMatches(title) & descriptionMatches(description)){
+
             Category category = new Category(title, description);
             if (number == null){
                 return category;
@@ -37,9 +37,7 @@ public class Category
                 category.setId(new Integer(number));
                 return category;
             }
-        }
 
-        throw new NumberFormatException();
     }
 
     public static boolean titleMatches(String title){

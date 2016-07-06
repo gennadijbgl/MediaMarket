@@ -2,7 +2,6 @@ package servlets.category;
 
 
 import entities.Category;
-import entities.Goods;
 import service.CategoryDao;
 
 import javax.ejb.EJB;
@@ -14,13 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import static servlets.Helper.handle;
-import static servlets.Helper.print;
 
-@WebServlet(value = "/categories/edit/*")
-public class Edit extends HttpServlet {
+@WebServlet(value = "/categories/delete/*")
+public class Delete extends HttpServlet {
 
     @EJB
     CategoryDao dao;
@@ -30,24 +27,24 @@ public class Edit extends HttpServlet {
         int number = new Integer(request.getParameter("id"));
         Category item = dao.findById(number);
         request.setAttribute("item", item);
-        request.setAttribute("page", "/pages/categories/edit.jsp");
+        request.setAttribute("page", "/pages/categories/delete.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
-            saveEditions(request);
+            delete(request);
         }
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
-        request.setAttribute("page", "/pages/categories/list.jsp");
-        request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
+        response.sendRedirect("list");
+
     }
 
-    protected void saveEditions(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
-        Category category = Category.getCategory(request);
-        dao.update(category) ;
+    protected void delete(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
+        String id = request.getParameter("id");
+        dao.delete(Integer.parseInt(id)) ;
 
 
     }

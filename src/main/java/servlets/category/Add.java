@@ -44,7 +44,8 @@ public class Add extends HttpServlet {
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
-        response.sendRedirect("add");
+        request.setAttribute("page", "/pages/categories/list.jsp");
+        request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
     protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
