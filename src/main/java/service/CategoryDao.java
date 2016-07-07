@@ -41,16 +41,9 @@ public class CategoryDao
 
 
     public void update(Category item)throws SQLException {
-
         em.merge(item);
+    }
 
-    }
-    public ArrayList<Category> findByTitle(String title) {
-        Query query = em.createNativeQuery("{call findCategoryByTitle(?)}", Category.class)
-                .setParameter(1, title)
-                ;
-        return new ArrayList<Category>(query.getResultList());
-    }
 
     public ArrayList<Category> findAll() {
         Query query = em.createQuery("select u from category u");
