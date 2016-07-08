@@ -15,6 +15,7 @@
             <th>Катэгорыя</th>
             <th>Кошт</th>
             <th>Колькасць</th>
+            <th>Дзеянні</th>
         </tr>
         </thead>
         <tbody>
@@ -26,7 +27,9 @@
                 <td><c:out value="${item.getCategory().getTitle()}" /></td>
                 <td><c:out value="${item.getPrice()}" /></td>
                 <td><c:out value="${item.getCount()}" /></td>
-                getCategoryId
+                <td><a href="<c:out value="${request.getAttribute('page')}edit?id=${item.getId()}" />">Змяніць</a>
+                    <a href="<c:out value="${request.getAttribute('page')}delete?id=${item.getId()}" />">Выдаліць</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

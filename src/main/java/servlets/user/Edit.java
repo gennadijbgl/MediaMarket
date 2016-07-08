@@ -1,8 +1,10 @@
-package servlets.category;
+package servlets.user;
 
 
-import entities.Category;
-import service.CategoryDao;
+import entities.Role;
+import entities.User;
+import service.RoleDao;
+import service.UserDao;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -13,33 +15,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import static servlets.Helper.handle;
-import static servlets.Helper.print;
 
-@WebServlet(value = "/categories/add")
-public class Add extends HttpServlet {
+@WebServlet(value = "/users/edit/*")
+public class Edit extends HttpServlet {
 
     @EJB
-    CategoryDao categoryDao;
+    UserDao dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        try{
-            ArrayList<Category> categories = categoryDao.findAll();
-            request.setAttribute("categories", print(categories));
-        }
-        catch (Exception exception){
-            request.getSession().setAttribute("message", handle(exception));
-        }
-        request.setAttribute("page", "/pages/categories/add.jsp");
+        int number = new Integer(request.getParameter("id"));
+        User item = dao.findById(number);
+        request.setAttribute("item", item);
+        request.setAttribute("page", "/pages/categories/edit.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
-            add(request);
+            saveEditions(request);
         }
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
@@ -48,8 +44,9 @@ public class Add extends HttpServlet {
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
-    protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
-        Category category = Category.getCategory(request);
-        categoryDao.save(category);
+    protected void saveEditions(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
+        User item = User.getUser(request);
+        dao.update(item) ;
+
     }
 }

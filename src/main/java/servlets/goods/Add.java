@@ -54,7 +54,7 @@ public class Add extends HttpServlet{
 
     protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
         Goods goods = Goods.getGoods(request);
-        String message = goodsDao.save(goods) == 1 ? "Товар успешно добавлен" : "Ошибка добавления в базу данных";
-        request.getSession().setAttribute("message", message);
+        goodsDao.save(goods);
+
     }
 }

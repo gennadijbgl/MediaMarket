@@ -27,11 +27,11 @@ public class RoleDao
     public void update(Role item)throws SQLException {
         em.merge(item);
     }
-    public List findById(int id) {
-        return em.createQuery(
+    public Role findById(int id) {
+        return (Role) em.createQuery(
                 "SELECT c FROM roles c WHERE c.id = :id")
                 .setParameter("id", id)
-                .getResultList();
+                .getSingleResult();
     }
     public List findAll() {
         return em.createQuery(

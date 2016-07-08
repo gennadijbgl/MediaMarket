@@ -1,5 +1,6 @@
 package service;
 
+import entities.Role;
 import entities.User;
 import org.hibernate.Hibernate;
 
@@ -7,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,4 +65,10 @@ public class UserDao
         return em.createQuery("select u from users u").getResultList();
     }
 
+    public void delete(int id)throws SQLException {
+        em.remove(findById(id));
+    }
+    public void update(User item)throws SQLException {
+        em.merge(item);
+    }
 }
