@@ -30,15 +30,15 @@ public class UserDao
                 .getResultList());
     }
 
-    public List findById(int id)
+    public User findById(int id)
     {
-        return em.createQuery(
+        return (User) em.createQuery(
                 "SELECT c FROM users c WHERE c.id = :id")
-                .setParameter("id", id)
-                .getResultList();
+                .setParameter("id", id).getSingleResult();
+
     }
 
-    @Transactional
+
     public List findByIdT(int id)
     {
         return em.createQuery(

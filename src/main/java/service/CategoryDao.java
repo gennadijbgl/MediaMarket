@@ -16,17 +16,8 @@ public class CategoryDao
     @PersistenceContext(unitName = "Store")
     private EntityManager em;
 
-    public int saveCategory(Category category) {
-        try {
-
-
+    public void save(Category category) {
             em.persist(category);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return 1;
     }
 
     public void delete(int id)throws SQLException {

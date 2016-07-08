@@ -1,5 +1,6 @@
 package service;
 
+import entities.Category;
 import entities.Goods;
 
 import javax.ejb.Stateless;
@@ -15,46 +16,24 @@ public class GoodsDao
     @PersistenceContext(unitName = "Store")
     private EntityManager em;
 
-    public int saveGoods(Goods goods)throws SQLException {
-
-        em.persist(goods);
-        return 1;
+    public void save(Goods item)throws SQLException {
+        em.persist(item);
     }
 
-    public int updateGoods(Goods goods)throws SQLException {
-        Query query = em.createNativeQuery("{call updateGoods(?,?,?,?,?,?)}",
-                Goods.class)
-                .setParameter(1, goods.getId())
-                .setParameter(2, goods.getCategoryId())
-                .setParameter(3, goods.getTitle())
-                .setParameter(4, goods.getPrice())
-                .setParameter(5, goods.getCount())
-                .setParameter(6, goods.getDescription())
-                ;
-        return query.executeUpdate();
+    public void update(Goods item)throws SQLException {
+        em.merge(item);
     }
 
-    public int delete(int id)throws SQLException {
-        Query query = em.createNativeQuery("{call deleteGoods(?)}",
-                Goods.class)
-                .setParameter(1, id)
-                ;
-        return query.executeUpdate();
+    public void delete(int id)throws SQLException {
+        em.remove(findById(id));
     }
 
-    public ArrayList<Goods> findById(int number) {
-        Query query = em.createNativeQuery("{call findGoodsById(?)}", Goods.class)
-                .setParameter(1, number)
-                ;
-        return new ArrayList<Goods>(query.getResultList());
+    public Goods findById(int id) {
+        return (Goods) em.createQuery(
+                "SELECT c FROM goods c WHERE c.id = :id")
+                .setParameter("id", id).getSingleResult();
     }
 
-    public ArrayList<Goods> findByTitle(String title) {
-        Query query = em.createNativeQuery("{call findGoodsByTitle(?)}", Goods.class)
-                .setParameter(1, title)
-                ;
-        return new ArrayList<Goods>(query.getResultList());
-    }
 
     public ArrayList<Goods> findAll() {
         Query query = em.createQuery("select y from goods y");

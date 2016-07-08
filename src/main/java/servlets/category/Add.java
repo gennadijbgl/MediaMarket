@@ -50,7 +50,7 @@ public class Add extends HttpServlet {
 
     protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
         Category category = Category.getCategory(request);
-        String message = categoryDao.saveCategory(category) == 1 ? "Категория успешно добавлена" : "Ошибка добавления в базу данных";
+        String message = categoryDao.save(category) == 1 ? "Категория успешно добавлена" : "Ошибка добавления в базу данных";
         request.getSession().setAttribute("message", message);
     }
 }

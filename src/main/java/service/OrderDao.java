@@ -3,6 +3,7 @@ package service;
 import entities.Category;
 import entities.Goods;
 import entities.Order;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 public class OrderDao
@@ -17,29 +19,21 @@ public class OrderDao
     @PersistenceContext(unitName = "Store")
     private EntityManager em;
 
-    public int saveOrder(Order order)throws SQLException {
-        Query query = em.createNativeQuery("{call saveOrder(?,?)}",
-                Goods.class)
-                .setParameter(1, order.getUserId())
-                .setParameter(2, order.getGoodId())
-                ;
-        return query.executeUpdate();
+    public void save(Order item)throws SQLException {
+        em.persist(item);
+
     }
 
-
-    public int delete(int id)throws SQLException {
-        Query query = em.createNativeQuery("{call deleteOrder(?)}",
-                Category.class)
-                .setParameter(1, id)
-                ;
-        return query.executeUpdate();
+    public void delete(int id)throws SQLException {
+       throw new NotImplementedException();
+       // em.remove(findById(id));
     }
 
-    public ArrayList<Order> findOrdersByUsername(String username){
-        Query query = em.createNativeQuery("{call findOrdersByUsername(?)}", Order.class)
-                .setParameter(1, username)
-                ;
-        return new ArrayList<Order>(query.getResultList());
+    public List<Order> findById(int id) {
+        return  em.createQuery(
+                "SELECT c FROM orders c WHERE c.userId = :id")
+                .setParameter("id", id).getResultList();
     }
+
 
 }
