@@ -29,7 +29,7 @@ public class Delete extends HttpServlet {
         int number = new Integer(request.getParameter("id"));
         Role item = dao.findById(number);
         request.setAttribute("item", item);
-        request.setAttribute("page", "/pages/categories/delete.jsp");
+        request.setAttribute("page", "/pages/roles/delete.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
@@ -47,7 +47,6 @@ public class Delete extends HttpServlet {
     protected void delete(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
         String id = request.getParameter("id");
         dao.delete(Integer.parseInt(id)) ;
-
 
     }
 }

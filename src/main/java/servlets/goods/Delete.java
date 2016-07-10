@@ -29,7 +29,7 @@ public class Delete extends HttpServlet {
         int number = new Integer(request.getParameter("id"));
         Goods item = dao.findById(number);
         request.setAttribute("item", item);
-        request.setAttribute("page", "/pages/categories/delete.jsp");
+        request.setAttribute("page", "/pages/goods/delete.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 

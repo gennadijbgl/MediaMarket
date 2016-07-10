@@ -49,7 +49,7 @@ public class Add extends HttpServlet{
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
-        response.sendRedirect("add");
+        response.sendRedirect("list");
     }
 
     protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{

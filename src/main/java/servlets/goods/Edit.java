@@ -1,9 +1,7 @@
 package servlets.goods;
 
 
-import entities.Category;
 import entities.Goods;
-import service.CategoryDao;
 import service.GoodsDao;
 
 import javax.ejb.EJB;
@@ -29,22 +27,22 @@ public class Edit extends HttpServlet {
         int number = new Integer(request.getParameter("id"));
         Goods item = dao.findById(number);
         request.setAttribute("item", item);
-        request.setAttribute("page", "/pages/categories/edit.jsp");
+        request.setAttribute("page", "/pages/goods/edit.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
-            saveEditions(request);
+            edit(request);
         }
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
-        request.setAttribute("page", "/pages/categories/list.jsp");
+        request.setAttribute("page", "/pages/goods/list.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
-    protected void saveEditions(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
+    protected void edit(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
         Goods item = Goods.getGoods(request);
         dao.update(item) ;
 

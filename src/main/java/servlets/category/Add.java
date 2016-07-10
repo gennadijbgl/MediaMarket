@@ -22,12 +22,12 @@ import static servlets.Helper.print;
 public class Add extends HttpServlet {
 
     @EJB
-    CategoryDao categoryDao;
+    CategoryDao dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
-            ArrayList<Category> categories = categoryDao.findAll();
+            ArrayList<Category> categories = dao.findAll();
             request.setAttribute("categories", print(categories));
         }
         catch (Exception exception){
@@ -44,12 +44,11 @@ public class Add extends HttpServlet {
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
-        request.setAttribute("page", "/pages/categories/list.jsp");
-        request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
+        response.sendRedirect("list");
     }
 
     protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
         Category category = Category.getCategory(request);
-        categoryDao.save(category);
+        dao.save(category);
     }
 }

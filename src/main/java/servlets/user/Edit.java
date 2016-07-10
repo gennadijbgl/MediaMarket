@@ -1,9 +1,7 @@
 package servlets.user;
 
 
-import entities.Role;
 import entities.User;
-import service.RoleDao;
 import service.UserDao;
 
 import javax.ejb.EJB;
@@ -29,22 +27,21 @@ public class Edit extends HttpServlet {
         int number = new Integer(request.getParameter("id"));
         User item = dao.findById(number);
         request.setAttribute("item", item);
-        request.setAttribute("page", "/pages/categories/edit.jsp");
+        request.setAttribute("page", "/pages/users/edit.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
-            saveEditions(request);
+            edit(request);
         }
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
-        request.setAttribute("page", "/pages/categories/list.jsp");
-        request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
+        response.sendRedirect("list");
     }
 
-    protected void saveEditions(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
+    protected void edit(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
         User item = User.getUser(request);
         dao.update(item) ;
 

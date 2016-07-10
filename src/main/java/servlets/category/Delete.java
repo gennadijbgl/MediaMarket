@@ -45,7 +45,5 @@ public class Delete extends HttpServlet {
     protected void delete(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
         String id = request.getParameter("id");
         dao.delete(Integer.parseInt(id)) ;
-
-
     }
 }

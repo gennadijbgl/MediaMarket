@@ -27,9 +27,10 @@ public class Role
     }
 
     public static Role getRole(HttpServletRequest request){
-        String role = request.getParameter("title");
-        return new Role(role);
 
+       Role r  = new Role(request.getParameter("title"));
+        r.setId(new Integer(request.getParameter("id")));
+        return r;
     }
     public int getId() {
         return id;

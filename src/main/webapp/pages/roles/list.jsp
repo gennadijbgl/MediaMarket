@@ -11,6 +11,7 @@
         <tr>
             <th>Ід</th>
             <th>Назва</th>
+            <th>Дзеянні</th>
         </tr>
         </thead>
         <tbody>
@@ -18,6 +19,9 @@
             <tr>
                 <td><c:out value="${item.getId()}" /></td>
                 <td><c:out value="${item.getTitle()}" /></td>
+                <td><a href="<c:out value="${request.getAttribute('page')}edit?id=${item.getId()}" />">Змяніць</a>
+                    <a href="<c:out value="${request.getAttribute('page')}delete?id=${item.getId()}" />">Выдаліць</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
