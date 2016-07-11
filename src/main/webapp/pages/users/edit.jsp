@@ -10,19 +10,19 @@
 
         <div class="form-group">
             <label for="username">Імя</label>
-            <input type="text" class="form-control disabled" value="<c:out value="${item.getUsername()}" />" id="username" name = "username" placeholder="Назва (макс 50 сімбаляў)" required pattern="^[A-Za-zА-Яа-яЁё0-9- ]{1,50}$">
+            <input type="text" class="form-control disabled" value="<c:out value="${item.getUsername()}" />" id="username" name = "username" placeholder="Назва (макс 50 сімбаляў)" required >
 
         </div>
 
         <div class="form-group">
             <label for="password1">Пароль</label>
-            <input type="text" class="form-control" value="<c:out value="${item.getPassword()}" />" id="password1" name = "password1" placeholder="Назва (макс 50 сімбаляў)" required pattern="^[A-Za-zА-Яа-яЁё0-9- ]{1,50}$">
+            <input type="text" class="form-control" value="<c:out value="${item.getPassword()}" />" id="password1" name = "password1" placeholder="Назва (макс 50 сімбаляў)" required >
 
         </div>
 
         <div class="form-group">
             <label for="email">Пошта</label>
-            <input type="text" class="form-control" value="<c:out value="${item.getEmail()}" />" id="email" name = "email" placeholder="Назва (макс 50 сімбаляў)" required pattern="^[A-Za-zА-Яа-яЁё0-9- ]{1,50}$">
+            <input type="text" class="form-control" value="<c:out value="${item.getEmail()}" />" id="email" name = "email" placeholder="Назва (макс 50 сімбаляў)" required >
 
         </div>
 

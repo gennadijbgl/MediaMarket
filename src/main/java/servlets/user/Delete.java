@@ -1,6 +1,9 @@
 package servlets.user;
 
+
+import entities.Role;
 import entities.User;
+import service.RoleDao;
 import service.UserDao;
 
 import javax.ejb.EJB;
@@ -15,33 +18,35 @@ import java.sql.SQLException;
 
 import static servlets.Helper.handle;
 
-@WebServlet(urlPatterns = "/users/add")
-public class Add extends HttpServlet{
+@WebServlet(value = "/users/delete/*")
+public class Delete extends HttpServlet {
 
     @EJB
-    private UserDao userDao;
-
-
+    UserDao dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("page", "/pages/users/add.jsp");
+        int number = new Integer(request.getParameter("id"));
+        User item = dao.findById(number);
+        request.setAttribute("item", item);
+        request.setAttribute("page", "/pages/users/delete.jsp");
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try{
-            add(request);
+            delete(request);
         }
         catch (Exception exception){
             request.getSession().setAttribute("message", handle(exception));
         }
         response.sendRedirect("list");
+
     }
 
-    protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
-        User user = User.getUser(request);
-        userDao.save(user);
-        request.getSession().setAttribute("message", "");
+    protected void delete(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
+        String id = request.getParameter("id");
+        dao.delete(Integer.parseInt(id)) ;
+
     }
 }

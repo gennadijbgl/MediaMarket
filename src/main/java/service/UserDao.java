@@ -19,7 +19,7 @@ public class UserDao
     @PersistenceContext(unitName = "Store")
     private EntityManager em;
 
-    public void saveUser(User user)
+    public void save(User user)
     {
         em.persist(user);
     }

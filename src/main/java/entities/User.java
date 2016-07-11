@@ -30,13 +30,10 @@ public class User
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
         String email = request.getParameter("email");
-        if (!password1.equals(password2)){
-            return null;
-        }
-        if (matches(username, password1)){
-            return new User(username, password1, email);
-        }
-        return null;
+
+        User r = new User(username, password1, email);
+        r.setId((request.getParameter("id") == null) ? null : Integer.parseInt(request.getParameter("id")));
+        return r;
     }
 
     public static boolean usernameMatches(String lastName){
