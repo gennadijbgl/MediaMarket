@@ -2,6 +2,7 @@ package servlets.user;
 
 
 import entities.User;
+import service.RoleDao;
 import service.UserDao;
 
 import javax.ejb.EJB;
@@ -21,6 +22,8 @@ public class Edit extends HttpServlet {
 
     @EJB
     UserDao dao;
+    @EJB
+    RoleDao roleDao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -28,6 +31,9 @@ public class Edit extends HttpServlet {
         User item = dao.findById(number);
         request.setAttribute("item", item);
         request.setAttribute("page", "/pages/users/edit.jsp");
+
+        request.setAttribute("roles", roleDao.findAll());
+
         request.getRequestDispatcher("/pages/shared/template.jsp").forward(request, response);
     }
 

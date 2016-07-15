@@ -26,6 +26,15 @@
 
         </div>
 
+        <div class="form-group">
+            <label for="roleId">Роля</label>
+            <select  id ="roleId" class="form-control" name = "roleId" placeholder="Абярыце ролю" required>
+                <c:forEach items="${roles}" var="role">
+                    <option value="${role.getId()}" selected=${role.getId() == item.getRoleId() ? 'selected' : ''}>${role.getTitle()}</option>
+                </c:forEach>
+            </select>
+        </div>
+
         <button type="submit" role="group"  class="btn-group btn btn-default">Захаваць</button>
     </form>
 

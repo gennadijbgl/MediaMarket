@@ -21,6 +21,9 @@ public class User
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
+    @Column(name="roleId")
+    private int roleId;
+
     @ManyToOne
     @JoinColumn(name = "roleId")
     private Role role;
@@ -32,7 +35,19 @@ public class User
         String email = request.getParameter("email");
 
         User r = new User(username, password1, email);
-        r.setId((request.getParameter("id") == null) ? null : Integer.parseInt(request.getParameter("id")));
+
+
+        if(request.getParameter("roleId") != null)
+        {
+            r.setRoleId(Integer.parseInt(request.getParameter("roleId")));
+        }
+
+
+        if(request.getParameter("id") != null)
+        {
+            r.setId(Integer.parseInt(request.getParameter("id")));
+        }
+
         return r;
     }
 
@@ -94,6 +109,13 @@ public class User
         this.email = email;
     }
 
+public int getRoleId(){
+    return roleId;
+}
+
+    public void setRoleId(int id){
+         this.roleId = id;
+    }
 
     public Role getRole() {
         return role;
