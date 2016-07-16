@@ -35,7 +35,7 @@
             </select>
         </div>
 
-        <button type="submit" role="group"  class="btn-group btn btn-default">Захаваць</button>
+        <button type="submit"  role="group"  class="btn-group btn btn-default">Захаваць</button>
     </form>
 
 
