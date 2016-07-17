@@ -55,6 +55,5 @@ public class Add extends HttpServlet{
     protected void add(HttpServletRequest request)throws NumberFormatException, SQLException, EJBException, NullPointerException{
         Goods goods = Goods.getGoods(request);
         goodsDao.save(goods);
-
     }
 }

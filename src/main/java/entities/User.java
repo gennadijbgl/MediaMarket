@@ -21,11 +21,11 @@ public class User
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name="roleId")
+    @Column(name="roleId", nullable = false)
     private int roleId;
 
     @ManyToOne
-    @JoinColumn(name = "roleId")
+    @JoinColumn(name = "roleId", insertable = false, updatable = false)
     private Role role;
 
     public static User getUser(HttpServletRequest request){

@@ -4,7 +4,7 @@
 <div class="panel panel-default">
 
     <div class="panel-heading">Катэгоріі</div>
-
+<c:if test="${not empty  itemsArray}">
 
     <table class="table">
         <thead>
@@ -33,5 +33,5 @@
 </div>
 
 
-
+</c:if>
 

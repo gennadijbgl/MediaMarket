@@ -5,7 +5,7 @@
 
     <div class="panel-heading">Ролі</div>
 
-
+<c:if test="${not empty  itemsArray}">
     <table class="table">
         <thead>
         <tr>
@@ -29,5 +29,5 @@
 </div>
 
 
-
+</c:if>
 

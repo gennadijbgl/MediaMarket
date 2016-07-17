@@ -5,7 +5,7 @@
 
     <div class="panel-heading">Карыстачы</div>
 
-
+<c:if test="${not empty  itemsArray}">
     <table class="table">
         <thead>
         <tr>
@@ -24,7 +24,7 @@
                 <td><c:out value="${item.getUsername()}" /></td>
                 <td><c:out value="${item.getPassword()}" /></td>
                 <td><c:out value="${item.getEmail()}" /></td>
-                <td><c:out value="${item.getRole()}" /></td>
+                <td><c:out value="${item.getRole().getTitle()}" /></td>
                 <td><a href="<c:out value="${request.getAttribute('page')}edit?id=${item.getId()}" />">Змяніць</a>
                     <a href="<c:out value="${request.getAttribute('page')}delete?id=${item.getId()}" />">Выдаліць</a>
                 </td>
@@ -34,6 +34,6 @@
     </table>
 </div>
 
-
+</c:if>
 
 

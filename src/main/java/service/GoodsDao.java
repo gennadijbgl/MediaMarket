@@ -34,6 +34,10 @@ public class GoodsDao
                 .setParameter("id", id).getSingleResult();
     }
 
+    public ArrayList<Goods> findByTitle(String title) {
+        Query query = em.createQuery("select y from goods y where y.title=:title").setParameter("title",title);
+        return new ArrayList<Goods>(query.getResultList());
+    }
 
     public ArrayList<Goods> findAll() {
         Query query = em.createQuery("select y from goods y");
